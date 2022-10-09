@@ -4,12 +4,12 @@ import java.sql.*;
 import javax.swing.*;
 import com.formdev.flatlaf.FlatDarculaLaf;
 public class LoginForm extends JFrame {
-    final private Font mainFont = new Font("Comic Sans", Font.BOLD, 18);
+    final private Font mainFont = new Font("comic sans", Font.PLAIN, 18);
     JTextField tfEmail;
     JPasswordField pfPassword;
     public void initialize() {
         /*************** Form Panel ***************/
-        JLabel lbLoginForm = new JLabel("Login Form", SwingConstants.CENTER);
+        JLabel lbLoginForm = new JLabel("KTH Coin Buy/Sell Portal", SwingConstants.CENTER);
         lbLoginForm.setFont(mainFont);
         JLabel lbEmail = new JLabel("Email");
         lbEmail.setFont(mainFont);

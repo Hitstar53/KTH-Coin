@@ -17,7 +17,7 @@ public class MainFrame extends JFrame {
 
         Component[] labels = infoPanel.getComponents();
         for (int i = 0; i < labels.length; i++) {
-            labels[i].setFont(new Font("Segoe print", Font.BOLD, 18));
+            labels[i].setFont(new Font("Lexend", Font.PLAIN, 18));
         }
         add(infoPanel, BorderLayout.NORTH);
 
