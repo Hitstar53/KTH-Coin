@@ -16,7 +16,7 @@ public class Blockchain {
         genesisBlock.hash = calculateHash(genesisBlock);
     }
     //insert mthod for blockchain
-    public void insert(int data) {
+    public void addBlock(int data) {
         Block newBlock = new Block();
         newBlock.data = data;
         newBlock.timeStamp = System.currentTimeMillis();
