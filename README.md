@@ -2,9 +2,9 @@
 Aim to create a simple blockchain and a crypto currency on top of it using vanilla data structures like linked lists & graphs in Java  
 
 # Setup
-Run: `git clone`
-Run `Transact.java` for blockchain testing
-Run: `LoginFrame.java` for GUI testing
+Run: `git clone https://github.com/Hitstar53/KTH-Coin.git`  
+Run `Transact.java` for blockchain testing  
+Run: `LoginFrame.java` for GUI testing  
 
 # About
 The KTH blockchain has addition and deletion of blocks on buy/sell commands. It also has the secure SHA-256 Algorithm applied as the hashing algorithm for its blocks  
