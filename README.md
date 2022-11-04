@@ -11,5 +11,4 @@ The KTH blockchain has addition and deletion of blocks on buy/sell commands. It 
 All transactions are stored in a sperate class object with relevant information about the sender & the reciever  
 The trade of the crypto currency is stimulated using a GUI made entirely in Java Swing  
   
-![kth-coin-logo](https://user-images.githubusercontent.com/84141920/199963035-55673cc0-d085-4722-96b2-b47b7f52dbd6.png)
-
+<img  alt="kth coin logo" width="26px" src="https://user-images.githubusercontent.com/84141920/199963035-55673cc0-d085-4722-96b2-b47b7f52dbd6.png" />
