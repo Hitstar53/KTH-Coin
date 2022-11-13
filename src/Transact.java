@@ -15,7 +15,7 @@ public class Transact {
         user.email = email;
         user.password = password;
         balance.initialize(user);
-        System.out.println(user.toString());
+        System.out.println(user.details());
         while(true) {
             System.out.println("Do you want to buy or sell?");
             System.out.println("1. Buy");
