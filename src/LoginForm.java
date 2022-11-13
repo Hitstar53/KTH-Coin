@@ -99,6 +99,7 @@ public class LoginForm extends JFrame {
                 user.email = resultSet.getString("email");
                 user.phone = resultSet.getString("phone");
                 user.address = resultSet.getString("address");
+                user.balance = resultSet.getInt("balance");
                 user.password = resultSet.getString("password");
             }
             preparedStatement.close();
