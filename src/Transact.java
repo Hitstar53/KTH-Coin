@@ -5,50 +5,74 @@ public class Transact {
         Scanner sc = new Scanner(System.in);
         User user = new User();
         Balance balance = new Balance();
-        int choice,flag;
+        int choice,flag,amount,price;
         System.out.println("Welcome to the KTH Blockchain!");
         System.out.println("This is the KTH Coin Portal");
-        System.out.print("Enter your email: ");
+        System.out.print("Email: ");
         String email = sc.nextLine();
-        System.out.print("Enter your password: ");
+        System.out.print("Password: ");
         String password = sc.nextLine();
         user.email = email;
         user.password = password;
         balance.initialize(user);
-        System.out.println(user.details());
+        user.getUserDetailsFromDatabase();
         while(true) {
-            System.out.println("Do you want to buy or sell?");
-            System.out.println("1. Buy");
-            System.out.println("2. Sell");
+            System.out.println("What would you like to do?\n1. Profile\n2. Trade KTH");
             choice = sc.nextInt();
             switch (choice) {
                 case 1:
-                    System.out.println("Enter the amount you want to buy: ");
-                    int amount = sc.nextInt();
-                    balance.updateBalanceInDatabase(balance.getBalanceFromDatabase() + amount);
-                    System.out.println("Enter the receiver's name: ");
-                    String receiver = sc.next();
-                    Transaction transaction = new Transaction();
-                    transaction.buy(receiver, amount);
-                    blockchain.addBlock(transaction);
-                    System.out.println("Transaction successful!");
-                    System.out.println("Traversing the blockchain...");
-                    blockchain.traverse();
-                    balance.displayBalance(balance.getBalanceFromDatabase());
+                    System.out.println("Your profile details are:");
+                    System.out.println("Name: " + user.name);
+                    System.out.println("Email: " + user.email);
+                    System.out.println("Phone: " + user.phone);
+                    System.out.println("Address: " + user.address);
+                    System.out.println("Balance: " + balance.getBalanceFromDatabase());
                     break;
                 case 2:
-                    System.out.println("Enter the amount you want to sell: ");
-                    amount = sc.nextInt();
-                    balance.updateBalanceInDatabase(balance.getBalanceFromDatabase() - amount);
-                    System.out.println("Enter the sender's name: ");
-                    String sender = sc.next();
-                    transaction = new Transaction();
-                    transaction.sell(sender, amount);
-                    blockchain.addBlock(transaction);
-                    System.out.println("Transaction successful!");
-                    System.out.println("Traversing the blockchain...");
-                    blockchain.traverse();
-                    balance.displayBalance(balance.getBalanceFromDatabase());
+                    System.out.println("Do you want to buy or sell?");
+                    System.out.println("1. Buy");
+                    System.out.println("2. Sell");
+                    choice = sc.nextInt();
+                    switch (choice) {
+                        case 1:
+                            System.out.println("Enter quantity: ");
+                            amount = sc.nextInt();
+                            System.out.println("Enter price: ");
+                            price = sc.nextInt();
+                            System.out.println("Enter receiver's name: ");
+                            String receiver = sc.next();
+                            Transaction transaction = new Transaction();
+                            transaction.buy(receiver,amount,price);
+                            transaction.enterBuyDetailsIntoDatabase();
+                            transaction.performTransaction();
+                            balance.updateBalanceInDatabase(balance.getBalanceFromDatabase() + amount*price);
+                            blockchain.addBlock(transaction);
+                            System.out.println("Transaction successful!");
+                            //System.out.println("Traversing the blockchain...");
+                            //blockchain.traverse();
+                            balance.displayBalance(balance.getBalanceFromDatabase());
+                            break;
+                        case 2:
+                            System.out.print("Enter quantity: ");
+                            amount = sc.nextInt();
+                            System.out.print("Enter price: ");
+                            price = sc.nextInt();
+                            System.out.print("Enter sender's name: ");
+                            String sender = sc.next();
+                            transaction = new Transaction();
+                            transaction.sell(sender,amount,price);
+                            transaction.enterSellDetailsIntoDatabase();
+                            transaction.performTransaction();
+                            balance.updateBalanceInDatabase(balance.getBalanceFromDatabase() - amount);
+                            blockchain.addBlock(transaction);
+                            System.out.println("Transaction successful!");
+                            //System.out.println("Traversing the blockchain...");
+                            //blockchain.traverse();
+                            balance.displayBalance(balance.getBalanceFromDatabase());
+                            break;
+                        default:
+                            System.out.println("Invalid choice!");
+                    }
                     break;
                 default:
                     System.out.println("Invalid choice!");

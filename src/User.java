@@ -37,7 +37,6 @@ public class User {
             }
             //close connection
             con.close();
-            System.out.println("User details: " + name + " " + email + " " + phone + " " + address + " " + balance + " " + password);
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -59,6 +58,6 @@ public class User {
     }
     //toString method
     public String details() {
-        return "Name: " + name + ", Email: " + email + ", Phone: " + phone + ", Address: " + address + ", Password: " + password + ", PublicKey: " + wallet.getPublicKey() +  ", PrivateKey: " + wallet.getPrivateKey();
+        return "Name: " + name + ", Email: " + email + ", Phone: " + phone + ", Address: " + address + ", Balance: " + balance;
     }
 }
