@@ -35,21 +35,20 @@ public class Transact {
                     choice = sc.nextInt();
                     switch (choice) {
                         case 1:
-                            System.out.println("Enter quantity: ");
+                            System.out.print("Enter quantity: ");
                             amount = sc.nextInt();
-                            System.out.println("Enter price: ");
+                            System.out.print("Enter price: ");
                             price = sc.nextInt();
-                            System.out.println("Enter receiver's name: ");
+                            System.out.print("Enter receiver's Email: ");
                             String receiver = sc.next();
                             Transaction transaction = new Transaction();
                             transaction.buy(receiver,amount,price);
                             transaction.enterBuyDetailsIntoDatabase();
-                            transaction.performTransaction();
-                            balance.updateBalanceInDatabase(balance.getBalanceFromDatabase() + amount*price);
-                            blockchain.addBlock(transaction);
-                            System.out.println("Transaction successful!");
-                            //System.out.println("Traversing the blockchain...");
-                            //blockchain.traverse();
+                            if(transaction.performTransBuy(receiver,amount,price)) {
+                                blockchain.addBlock(transaction);
+                            }
+                            System.out.println("Traversing the blockchain...");
+                            blockchain.traverse();
                             balance.displayBalance(balance.getBalanceFromDatabase());
                             break;
                         case 2:
@@ -57,17 +56,22 @@ public class Transact {
                             amount = sc.nextInt();
                             System.out.print("Enter price: ");
                             price = sc.nextInt();
-                            System.out.print("Enter sender's name: ");
+                            System.out.print("Enter sender's Email: ");
                             String sender = sc.next();
+                            //check if seller has enough balance
+                            flag = balance.getBalanceFromDatabase();
+                            if (flag<amount) {
+                                System.out.println("You don't have enough balance! Try buying some KTH coins XD");
+                                break;
+                            }
                             transaction = new Transaction();
                             transaction.sell(sender,amount,price);
                             transaction.enterSellDetailsIntoDatabase();
-                            transaction.performTransaction();
-                            balance.updateBalanceInDatabase(balance.getBalanceFromDatabase() - amount);
-                            blockchain.addBlock(transaction);
-                            System.out.println("Transaction successful!");
-                            //System.out.println("Traversing the blockchain...");
-                            //blockchain.traverse();
+                            if(transaction.performTransSell(sender,amount,price)) {
+                                blockchain.addBlock(transaction);
+                            }
+                            System.out.println("Traversing the blockchain...");
+                            blockchain.traverse();
                             balance.displayBalance(balance.getBalanceFromDatabase());
                             break;
                         default:
