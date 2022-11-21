@@ -24,4 +24,4 @@ INSERT INTO users VALUES(4,'Tathagat Sen','tathagatsen@gmail.com','+914838636479
 -- @BLOCK
 UPDATE users SET balance = 5000 WHERE id = 1;
 -- @BLOCK
-DELETE FROM buy WHERE id = 2;
+DELETE FROM users WHERE id>4;
