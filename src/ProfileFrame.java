@@ -1,10 +1,10 @@
 import javax.swing.*;
 import java.awt.*;
-//import java.awt.event.*;
+import java.awt.event.*;
 //import java.sql.*;
 //import com.formdev.flatlaf.FlatDarculaLaf;
 public class ProfileFrame extends JFrame {
-    //final private Font mainFont = new Font("comic sans", Font.PLAIN, 18);
+    final private Font mainFont = new Font("comic sans", Font.PLAIN, 18);
     public void initialize(User user) {
         //create a profile frame which shows user balance and allows user to buy/sell coins
         /*************** Info Panel ***************/
@@ -42,10 +42,44 @@ public class ProfileFrame extends JFrame {
         add(buySellPanel, BorderLayout.CENTER);
         /*************** Button Panel ***************/
         JPanel buttonPanel = new JPanel();
+        JButton buyButton = new JButton("Buy");
+        buyButton.setFont(mainFont);
+        buyButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //String amount = buySellPanel.getComponent(3).toString();
+                User user = new User();
+                Balance balance = new Balance();
+                balance.initialize(user);
+                user.getUserDetailsFromDatabase();
+                //Transaction transaction = new Transaction();
+                /*transaction.buy(receiver, amount, price);
+                transaction.enterBuyDetailsIntoDatabase();
+                if (transaction.performTransBuy(receiver, amount, price)) {
+                    blockchain.addBlock(transaction);
+                }*/
+            }
+        });
+        JButton sellButton = new JButton("Sell");
+        sellButton.setFont(mainFont);
+        sellButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //String amount = buySellPanel.getComponent(3).toString();
+                User user = new User();
+                Balance balance = new Balance();
+                balance.initialize(user);
+                user.getUserDetailsFromDatabase();
+                //Transaction transaction = new Transaction();
+                /*transaction.sell(receiver, amount, price);
+                transaction.enterSellDetailsIntoDatabase();
+                if (transaction.performTransSell(receiver, amount, price)) {
+                    blockchain.addBlock(transaction);
+                }*/
+            }
+        });
         buttonPanel.setLayout(new GridLayout(1, 2, 10, 0));
         buttonPanel.setBorder(BorderFactory.createEmptyBorder(30, 50, 30, 50));
-        JButton buyButton = new JButton("Buy");
-        JButton sellButton = new JButton("Sell");
         buttonPanel.add(buyButton);
         buttonPanel.add(sellButton);
         add(buttonPanel, BorderLayout.SOUTH);
