@@ -86,7 +86,6 @@ public class Transaction {
             return false;
         }
     }
-    
     public boolean performTransSell(String trader, int amt, int pr) {
         try {
             // connect to database
@@ -100,7 +99,9 @@ public class Transaction {
             if (rs.next()) {
                 // update balance of user
                 Statement stmt2 = con.createStatement();
-                stmt2.executeUpdate("update users set balance = balance - " + amt + " where email = '" + trader + "'");
+                //stmt2.executeUpdate("update users set balance = balance - " + amt + " where email = '" + trader + "'");
+                //update balance of buyer
+                stmt2.executeUpdate("update users set balance = balance + " + amt + " where email = '" + rs.getString(2) + "'");
                 // delete entry from buy database
                 stmt1.executeUpdate("delete from buy where amount = " + amt + " and price = " + pr);
                 // delete entry from sell database
@@ -118,6 +119,64 @@ public class Transaction {
             System.out.println(e);
             return false;
         }
+    }
+    //cancel buy order
+    public boolean cancelBuyOrder(String trader, int amt, int pr) {
+        try {
+            //connect to database
+            // connect to database
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/cryptodb?serverTimezone=UTC",
+                    "sqluser", "password");
+            // create statement
+            Statement stmt1 = con.createStatement();
+            // match sender details with buy database
+            ResultSet rs = stmt1.executeQuery("select * from buy where amount = " + amt + " and price = " + pr);
+            // if match found
+            if (rs.next()) {
+                // delete entry from buy database
+                stmt1.executeUpdate("delete from buy where amount = " + amt + " and price = " + pr);
+                System.out.println("Order Cancelled!");
+                con.close();
+                return true;
+            } else {
+                // close connection
+                System.out.println("No Buy Order Found!");
+                con.close();
+                return false;
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return false;
+    }
+    //cancel sell order
+    public boolean cancelSellOrder(String trader, int amt, int pr) {
+        try {
+            // connect to database
+            // connect to database
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/cryptodb?serverTimezone=UTC",
+                    "sqluser", "password");
+            // create statement
+            Statement stmt1 = con.createStatement();
+            // match sender details with sell database
+            ResultSet rs = stmt1.executeQuery("select * from sell where amount = " + amt + " and price = " + pr);
+            // if match found
+            if (rs.next()) {
+                // delete entry from sell database
+                stmt1.executeUpdate("delete from sell where amount = " + amt + " and price = " + pr);
+                System.out.println("Order Cancelled!");
+                con.close();
+                return true;
+            } else {
+                // close connection
+                System.out.println("No Sell Order Found!");
+                con.close();
+                return false;
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return false;
     }
     //toString method
     public String toString() {

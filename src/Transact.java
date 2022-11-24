@@ -32,6 +32,9 @@ public class Transact {
                     System.out.println("Do you want to buy or sell?");
                     System.out.println("1. Buy");
                     System.out.println("2. Sell");
+                    System.out.println("3. Cancel Buy Order");
+                    System.out.println("4. Cancel Sell Order");
+                    System.out.println("5. List Orders");
                     choice = sc.nextInt();
                     switch (choice) {
                         case 1:
@@ -67,11 +70,37 @@ public class Transact {
                             transaction = new Transaction();
                             transaction.sell(sender,amount,price);
                             transaction.enterSellDetailsIntoDatabase();
+                            balance.updateBalanceInDatabase(flag-amount);
                             if(transaction.performTransSell(sender,amount,price)) {
                                 blockchain.addBlock(transaction);
                             }
                             System.out.println("Traversing the blockchain...");
                             blockchain.traverse();
+                            balance.displayBalance(balance.getBalanceFromDatabase());
+                            break;
+                        case 3:
+                            System.out.print("Enter quantity: ");
+                            amount = sc.nextInt();
+                            System.out.print("Enter price: ");
+                            price = sc.nextInt();
+                            System.out.print("Enter receiver's Email: ");
+                            receiver = sc.next();
+                            transaction = new Transaction();
+                            transaction.cancelBuyOrder(receiver,amount,price);
+                            balance.displayBalance(balance.getBalanceFromDatabase());
+                            break;
+                        case 4:
+                            System.out.print("Enter quantity: ");
+                            amount = sc.nextInt();
+                            System.out.print("Enter price: ");
+                            price = sc.nextInt();
+                            System.out.print("Enter sender's Email: ");
+                            sender = sc.next();
+                            flag = balance.getBalanceFromDatabase();
+                            transaction = new Transaction();
+                            if(transaction.cancelSellOrder(sender,amount,price)) {
+                                balance.updateBalanceInDatabase(flag+amount);
+                            }
                             balance.displayBalance(balance.getBalanceFromDatabase());
                             break;
                         default:
