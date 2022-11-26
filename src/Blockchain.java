@@ -1,4 +1,5 @@
 import java.security.*;
+import java.io.*;
 public class Blockchain {
     class Block {
         String hash;
@@ -36,9 +37,82 @@ public class Blockchain {
         newBlock.timeStamp = System.currentTimeMillis();
         newBlock.prevHash = omegaBlock.hash;
         newBlock.hash = calculateHash(newBlock);
+        writeBlock(newBlock);
         omegaBlock.next = newBlock;
         newBlock.prev = omegaBlock;
         omegaBlock = newBlock;
+    }
+    //create a write block function
+    public void writeBlock(Block block) {
+        try {
+            FileWriter fw = new FileWriter("D:\\KTH Coin\\src\\Blocks\\blocks.txt",true);
+            BufferedWriter bw = new BufferedWriter(fw);
+            PrintWriter pw = new PrintWriter(bw);
+            pw.println(block.hash);
+            pw.println(block.prevHash);
+            pw.println(block.timeStamp);
+            pw.println(block.transaction.sender);
+            pw.println(block.transaction.receiver);
+            pw.println(block.transaction.amount);
+            pw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    //create a read block function
+    public void readBlock() {
+        try {
+            FileReader fr = new FileReader("D:\\KTH Coin\\src\\Blocks\\blocks.txt");
+            BufferedReader br = new BufferedReader(fr);
+            String line;
+            //read 5 lines at a time
+            while((line = br.readLine()) != null) {
+                line = br.readLine();
+                System.out.println(line);
+                line = br.readLine();
+                System.out.println(line);
+                line = br.readLine();
+                System.out.println(line);
+                line = br.readLine();
+                System.out.println(line);
+                line = br.readLine();
+                System.out.println(line);
+                System.out.println();
+            }
+            br.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    //create a load block function which loads the blocks from the file into the blockchain
+    public void loadBlock() {
+        try {
+            FileReader fr = new FileReader("D:\\KTH Coin\\src\\Blocks\\blocks.txt");
+            BufferedReader br = new BufferedReader(fr);
+            String line;
+            //read 5 lines at a time
+            while((line = br.readLine()) != null) {
+                Block newBlock = new Block();
+                newBlock.transaction = new Transaction();
+                newBlock.hash = line;
+                line = br.readLine();
+                newBlock.prevHash = line;
+                line = br.readLine();
+                newBlock.timeStamp = Long.parseLong(line);
+                line = br.readLine();
+                newBlock.transaction.sender = line;
+                line = br.readLine();
+                newBlock.transaction.receiver = line;
+                line = br.readLine();
+                newBlock.transaction.amount = Integer.parseInt(line);
+                omegaBlock.next = newBlock;
+                newBlock.prev = omegaBlock;
+                omegaBlock = newBlock;
+            }
+            br.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     //traversal the blockchain
     public void traverse() {
@@ -54,27 +128,6 @@ public class Blockchain {
             currentBlock = currentBlock.next;
         }
     }
-    //delete a block from the blockchain
-    /*public void deleteBlock(int data) {
-        Block currentBlock = genesisBlock;
-        while (currentBlock != null) {
-            if (currentBlock.data == data) {
-                if (currentBlock == genesisBlock) {
-                    genesisBlock = genesisBlock.next;
-                    genesisBlock.prev = null;
-                } else if (currentBlock == omegaBlock) {
-                    omegaBlock = omegaBlock.prev;
-                    omegaBlock.next = null;
-                } else {
-                    currentBlock.prev.next = currentBlock.next;
-                    //exchange hashes
-                    currentBlock.next.prevHash = currentBlock.prevHash;
-                    currentBlock.next.prev = currentBlock.prev;
-                }
-            }
-            currentBlock = currentBlock.next;
-        }
-    }*/
     //delete block using trasaction data
     public void deleteBlock(Transaction transaction) {
         Block currentBlock = genesisBlock;
@@ -115,5 +168,9 @@ public class Blockchain {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+    //save block to file
+    public void saveBlock(Block block) {
+        //save block to file
     }
 }

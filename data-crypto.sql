@@ -22,6 +22,6 @@ INSERT INTO users VALUES(3,'Kaif Sayyad','kaifalisayyad@gmail.com',9022775595,'M
 -- @BLOCK
 INSERT INTO users VALUES(4,'Tathagat Sen','tathagatsen@gmail.com','+914838636479','Kabul, Afghanistan',0,'noobmaster69');
 -- @BLOCK
-UPDATE users SET balance = 5000 WHERE id = 1;
+UPDATE users SET balance = 5000 WHERE id>0;
 -- @BLOCK
-DELETE FROM buy WHERE id = 2;
+DELETE FROM users WHERE id>4;

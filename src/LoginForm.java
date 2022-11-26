@@ -39,8 +39,11 @@ public class LoginForm extends JFrame {
                 String password = String.valueOf(pfPassword.getPassword());
                 User user = getAuthenticatedUser(email, password);
                 if (user != null) {
-                    MainFrame mainFrame = new MainFrame();
-                    mainFrame.initialize(user);
+                    //MainFrame mainFrame = new MainFrame();
+                    //mainFrame.initialize(user);
+                    //dispose();
+                    ProfileFrame profileFrame = new ProfileFrame();
+                    profileFrame.initialize(user);
                     dispose();
                 }
                 else {
