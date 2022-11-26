@@ -14,6 +14,11 @@ public class Transact {
         String password = sc.nextLine();
         user.email = email;
         user.password = password;
+        System.out.println("Logging in...");
+        System.out.println("Login successful!");
+        System.out.println("Loading blocks...");
+        blockchain.loadBlock();
+        System.out.println("Blocks loaded!");
         balance.initialize(user);
         user.getUserDetailsFromDatabase();
         while(true) {
@@ -27,6 +32,7 @@ public class Transact {
                     System.out.println("Phone: " + user.phone);
                     System.out.println("Address: " + user.address);
                     System.out.println("Balance: " + balance.getBalanceFromDatabase());
+                    blockchain.readBlock();
                     break;
                 case 2:
                     System.out.println("Do you want to buy or sell?");

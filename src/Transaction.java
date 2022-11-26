@@ -66,6 +66,8 @@ public class Transaction {
                 //update balance of user
                 Statement stmt2 = con.createStatement();
                 stmt2.executeUpdate("update users set balance = balance + " + amt + " where email = '" + trader + "'");
+                //get email of seller
+                sender = rs.getString(2);
                 //delete entry from sell database
                 stmt1.executeUpdate("delete from sell where amount = " + amt + " and price = " + pr);
                 //delete entry from buy database
@@ -102,6 +104,8 @@ public class Transaction {
                 //stmt2.executeUpdate("update users set balance = balance - " + amt + " where email = '" + trader + "'");
                 //update balance of buyer
                 stmt2.executeUpdate("update users set balance = balance + " + amt + " where email = '" + rs.getString(2) + "'");
+                // get email of buyer
+                receiver = rs.getString(2);
                 // delete entry from buy database
                 stmt1.executeUpdate("delete from buy where amount = " + amt + " and price = " + pr);
                 // delete entry from sell database
