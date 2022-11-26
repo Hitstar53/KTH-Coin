@@ -101,7 +101,6 @@ public class Transaction {
             if (rs.next()) {
                 // update balance of user
                 Statement stmt2 = con.createStatement();
-                //stmt2.executeUpdate("update users set balance = balance - " + amt + " where email = '" + trader + "'");
                 //update balance of buyer
                 stmt2.executeUpdate("update users set balance = balance + " + amt + " where email = '" + rs.getString(2) + "'");
                 // get email of buyer
@@ -128,7 +127,6 @@ public class Transaction {
     public boolean cancelBuyOrder(String trader, int amt, int pr) {
         try {
             //connect to database
-            // connect to database
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/cryptodb?serverTimezone=UTC",
                     "sqluser", "password");
             // create statement
@@ -156,7 +154,6 @@ public class Transaction {
     //cancel sell order
     public boolean cancelSellOrder(String trader, int amt, int pr) {
         try {
-            // connect to database
             // connect to database
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/cryptodb?serverTimezone=UTC",
                     "sqluser", "password");

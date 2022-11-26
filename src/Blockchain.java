@@ -169,8 +169,4 @@ public class Blockchain {
             throw new RuntimeException(e);
         }
     }
-    //save block to file
-    public void saveBlock(Block block) {
-        //save block to file
-    }
 }

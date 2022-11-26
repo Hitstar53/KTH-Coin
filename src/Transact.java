@@ -5,7 +5,7 @@ public class Transact {
         Scanner sc = new Scanner(System.in);
         User user = new User();
         Balance balance = new Balance();
-        int choice,flag,amount,price;
+        int choice,flag=0,amount,price;
         System.out.println("Welcome to the KTH Blockchain!");
         System.out.println("This is the KTH Coin Portal");
         System.out.print("Email: ");
@@ -15,13 +15,29 @@ public class Transact {
         user.email = email;
         user.password = password;
         System.out.println("Logging in...");
+        balance.initialize(user);
+        user.getUserDetailsFromDatabase();
         System.out.println("Login successful!");
         System.out.println("Loading blocks...");
         blockchain.loadBlock();
         System.out.println("Blocks loaded!");
-        balance.initialize(user);
-        user.getUserDetailsFromDatabase();
         while(true) {
+            if(flag==3) {
+                System.out.print("\033[H\033[2J");
+                System.out.flush();
+                System.out.println("KTH Coin Portal");
+                sc.nextLine();
+                System.out.print("Email: ");
+                email = sc.nextLine();
+                System.out.print("Password: ");
+                password = sc.nextLine();
+                user.email = email;
+                user.password = password;
+                System.out.println("Logging in...");
+                balance.initialize(user);
+                user.getUserDetailsFromDatabase();
+                System.out.println("Login successful!");
+            }
             System.out.println("What would you like to do?\n1. Profile\n2. Trade KTH");
             choice = sc.nextInt();
             switch (choice) {
@@ -32,7 +48,6 @@ public class Transact {
                     System.out.println("Phone: " + user.phone);
                     System.out.println("Address: " + user.address);
                     System.out.println("Balance: " + balance.getBalanceFromDatabase());
-                    blockchain.readBlock();
                     break;
                 case 2:
                     System.out.println("Do you want to buy or sell?");
@@ -116,9 +131,10 @@ public class Transact {
                 default:
                     System.out.println("Invalid choice!");
             }
-            System.out.println("Do you want to continue? (1 for yes, 0 for no)");
+            System.out.println("Do you want to continue?\n1. Log Out\n2. Continue\n3. Switch User");
             flag = sc.nextInt();
-            if (flag == 0) {
+            if (flag==1) {
+                System.out.println("Logging out...");
                 break;
             }
         }
