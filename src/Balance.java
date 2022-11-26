@@ -46,20 +46,4 @@ public class Balance {
     public void displayBalance(int balance) {
         System.out.println("Your balance is: " + balance);
     }
-    /*public static void main(String[] args) {
-        Balance balance = new Balance();
-        User user = new User();
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Enter your email: ");
-        user.email = sc.nextLine();
-        System.out.println("Enter your password: ");
-        user.password = sc.nextLine();
-        balance.initialize(user);
-        System.out.println("Enter the amount you want to add to your balance: ");
-        int amount = sc.nextInt();
-        int newBalance = balance.getBalanceFromDatabase() + amount;
-        balance.updateBalanceInDatabase(newBalance);
-        balance.displayBalance(newBalance);
-        sc.close();
-    }*/
 }
