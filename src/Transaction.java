@@ -123,6 +123,28 @@ public class Transaction {
             return false;
         }
     }
+    //display buy orders
+    public void displayBuyOrders(String trader) {
+        try {
+            //connect to database
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/cryptodb?serverTimezone=UTC",
+                    "sqluser", "password");
+            // create statement
+            Statement stmt1 = con.createStatement();
+            //execute query
+            ResultSet rs = stmt1.executeQuery("select * from buy where receiver = '" + trader + "'");
+            //display buy orders
+            System.out.println("Buy Orders:");
+            System.out.println("Buyer\tAmount\tPrice");
+            while (rs.next()) {
+                System.out.println(rs.getString(2) + "\t" + rs.getInt(3) + "\t" + rs.getInt(4));
+            }
+            //close connection
+            con.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
     //cancel buy order
     public boolean cancelBuyOrder(String trader, int amt, int pr) {
         try {

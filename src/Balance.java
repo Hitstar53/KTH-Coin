@@ -4,9 +4,9 @@ public class Balance {
     public void initialize(User user) {
         this.user = user;
         //get balance from database
-        int balance = getBalanceFromDatabase();
+        //int balance = getBalanceFromDatabase();
         //display balance
-        displayBalance(balance);
+        //displayBalance(balance);
     }
     public int getBalanceFromDatabase() {
         int balance = 0;
