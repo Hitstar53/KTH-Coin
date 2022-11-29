@@ -5,8 +5,8 @@
 
 # Setup
 **Run:** `git clone https://github.com/Hitstar53/KTH-Coin.git`  
-**Run:** `Transact.java` for blockchain testing  
-**Run:** `LoginFrame.java` for GUI testing  
+**Create:** `cryptodb` database with tables: `users,buy & sell` 
+**Run:** `App.java` for running the buy/sell portal GUI    
 
 # About
 The KTH blockchain has addition and deletion of blocks on buy/sell commands. It also has the secure SHA-256 Algorithm applied as the hashing algorithm for its blocks  
