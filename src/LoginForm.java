@@ -54,11 +54,13 @@ public class LoginForm extends JFrame {
                 }
             }
         });
-        JButton btnCancel = new JButton("Cancel");
+        JButton btnCancel = new JButton("Sign Up");
         btnCancel.setFont(mainFont);
         btnCancel.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                SignupForm signupForm = new SignupForm();
+                signupForm.initialize();
                 dispose();
             }
         });
@@ -74,7 +76,7 @@ public class LoginForm extends JFrame {
 
         setTitle("Login Form");
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-        setSize(400, 500);
+        setSize(400, 400);
         setMinimumSize(new Dimension(350, 450));
         //setResizable(false);
         setLocationRelativeTo(null);
