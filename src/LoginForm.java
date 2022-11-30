@@ -42,6 +42,12 @@ public class LoginForm extends JFrame {
                     //MainFrame mainFrame = new MainFrame();
                     //mainFrame.initialize(user);
                     //dispose();
+                    System.out.println("Logging in...");
+                    System.out.println("Login successful!");
+                    Blockchain blockchain = new Blockchain();
+                    System.out.println("Loading blocks...");
+                    blockchain.loadBlock();
+                    System.out.println("Blocks loaded!");
                     ProfileFrame profileFrame = new ProfileFrame();
                     profileFrame.initialize(user);
                     dispose();
