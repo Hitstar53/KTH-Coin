@@ -5,7 +5,7 @@
 
 # Setup
 **Run:** `git clone https://github.com/Hitstar53/KTH-Coin.git`  
-**Create:** `cryptodb` database with tables: `users,buy & sell` 
+**Create:** `cryptodb` database with tables: `users,buy & sell`   
 **Run:** `App.java` for running the buy/sell portal GUI    
 
 # About
