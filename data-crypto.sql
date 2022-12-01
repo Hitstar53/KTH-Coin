@@ -1,3 +1,31 @@
+-- @SCHEMA: crypto
+CREATE TABLE buy (
+    id INT NOT NULL AUTO_INCREMENT,
+    receiver VARCHAR(255) NOT NULL,
+    amount INT NOT NULL,
+    price INT NOT NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE sell (
+    id INT NOT NULL AUTO_INCREMENT,
+    sender VARCHAR(255) NOT NULL,
+    amount INT NOT NULL,
+    price INT NOT NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE users (
+    id INT NOT NULL AUTO_INCREMENT,
+    name VARCHAR(255) NOT NULL,
+    email VARCHAR(200) NOT NULL UNIQUE,
+    phone VARCHAR(200) NOT NULL,
+    address VARCHAR(255) NOT NULL,
+    balance INT NOT NULL DEFAULT 0,
+    password VARCHAR(255) NOT NULL,
+    PRIMARY KEY (id)
+);
+-- @BLOCK
 ALTER TABLE buy RENAME COLUMN reciever TO receiver;
 -- @BLOCK
 ALTER TABLE buy MODIFY COLUMN id INT NOT NULL AUTO_INCREMENT;

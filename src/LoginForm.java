@@ -42,6 +42,12 @@ public class LoginForm extends JFrame {
                     //MainFrame mainFrame = new MainFrame();
                     //mainFrame.initialize(user);
                     //dispose();
+                    System.out.println("Logging in...");
+                    System.out.println("Login successful!");
+                    Blockchain blockchain = new Blockchain();
+                    System.out.println("Loading blocks...");
+                    blockchain.loadBlock();
+                    System.out.println("Blocks loaded!");
                     ProfileFrame profileFrame = new ProfileFrame();
                     profileFrame.initialize(user);
                     dispose();
@@ -54,11 +60,13 @@ public class LoginForm extends JFrame {
                 }
             }
         });
-        JButton btnCancel = new JButton("Cancel");
+        JButton btnCancel = new JButton("Sign Up");
         btnCancel.setFont(mainFont);
         btnCancel.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                SignupForm signupForm = new SignupForm();
+                signupForm.initialize();
                 dispose();
             }
         });
@@ -74,7 +82,7 @@ public class LoginForm extends JFrame {
 
         setTitle("Login Form");
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-        setSize(400, 500);
+        setSize(400, 400);
         setMinimumSize(new Dimension(350, 450));
         //setResizable(false);
         setLocationRelativeTo(null);
