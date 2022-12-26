@@ -1,18 +1,14 @@
-## Getting Started
+<img align=right alt="kth coin logo" width="175px" src="https://user-images.githubusercontent.com/84141920/199963035-55673cc0-d085-4722-96b2-b47b7f52dbd6.png"/>    
+  
+# KTH Coin  
+**Aim** to create a simple blockchain and a crypto currency on top of it using vanilla data structures like linked lists & graphs in Java  
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+# Setup
+**Run:** `git clone https://github.com/Hitstar53/KTH-Coin.git`  
+**Create:** `cryptodb` database with tables: `users,buy & sell`   
+**Run:** `App.java` for running the buy/sell portal GUI    
 
-## Folder Structure
-
-The workspace contains two folders by default, where:
-
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
-
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
-
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
-
-## Dependency Management
-
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+# About
+The KTH blockchain has addition and deletion of blocks on buy/sell commands. It also has the secure SHA-256 Algorithm applied as the hashing algorithm for its blocks  
+All transactions are stored in a sperate class object with relevant information about the sender & the reciever  
+The trade of the crypto currency is stimulated using a GUI made entirely in Java Swing  
